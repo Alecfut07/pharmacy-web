@@ -1,3 +1,33 @@
+<link rel='stylesheet' href="/stylesheets/table-products.css" />
+<h1>List of products</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category_ID</th>
+        <th>Price</th>
+        <th>View product</th>
+        <th>Delete product</th>
+    </tr>
+    {{#each products}}
+    <tr>
+        <td class="id">{{id}}</td>
+        <td class="name">{{name}}</td>
+        <td class="categoryName">{{category.name}}</td>
+        <td class="price">{{price}}</td>
+        <td class="viewButton"><a href="http://localhost:3000/products/{{id}}"><button>VIEW</button></a></td>
+        <td class="deleteButton"><button>DELETE</button></td>
+    </tr>
+    {{/each}}
+</table>
+
+
+{{!-- <a href="http://localhost:3000/products/{{id}}"></a>
+<a href="http://localhost:3000/products/{{id}}"></a>
+<a href="http://localhost:3000/products/{{id}}"></a>
+<a href="http://localhost:3000/products/{{id}}"></a> --}}
+
+{{!--
 <link rel='stylesheet' href='/stylesheets/products.css' />
 <p class="product-item">Products!</p>
 
@@ -7,4 +37,4 @@
         {{name}}
     </a>
 </div>
-{{/each}}
+{{/each}} --}}

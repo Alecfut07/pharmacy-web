@@ -1,4 +1,16 @@
-<p>ID: {{product.id}}</p>
-<p>Name: {{product.name}}</p>
-<p>Category_ID: {{product.category.name}}</p>
-<p>Price: {{product.price}}</p>
+<link rel='stylesheet' href="/stylesheets/product-details.css" />
+<h1>Product Details</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category_Name</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td class="id">{{product.id}}</td>
+        <td class="name">{{product.name}}</td>
+        <td class="categoryName">{{product.category.name}}</td>
+        <td class="price">{{product.price}}</td>
+    </tr>
+</table>

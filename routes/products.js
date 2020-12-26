@@ -5,17 +5,6 @@ var router = express.Router();
 const axios = require('axios');
 
 router.get('/', function(req, res, next) {
-  const products = [
-    {
-      name: 'prod1',
-    },
-    {
-      name: 'prod2',
-    },
-    {
-      name: 'prod3',
-    }
-  ];
   axios.get('http://localhost:3001/products').then(resp => {
     
     res.render('products', { products: resp.data.data })
@@ -30,4 +19,15 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
+router.get('/update', function(req, res, next) {
+  axios.get('http://localhost:3001/products'.then(resp => {
+    res.render('update-product', { product: resp.data.data})
+  }))
+})
+
+router.get('/new', function(req, res, next) {
+  axios.get('http://localhost:3001/categories').then(resp => {
+    res.render('new-product', { category: resp.data.data })
+  });
+});
 module.exports = router;

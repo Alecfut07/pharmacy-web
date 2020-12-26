@@ -1,10 +1,10 @@
 <link rel='stylesheet' href="/stylesheets/table-products.css" />
 <h1>List of products</h1>
-<table>
+<table id="listProduct">
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Category_ID</th>
+        <th>Category_Name</th>
         <th>Price</th>
         <th>View product</th>
         <th>Delete product</th>
@@ -16,10 +16,18 @@
         <td class="categoryName">{{category.name}}</td>
         <td class="price">{{price}}</td>
         <td class="viewButton"><a href="http://localhost:3000/products/{{id}}"><button>VIEW</button></a></td>
-        <td class="deleteButton"><button>DELETE</button></td>
+        <td class="deleteButton"><button onclick="deleteProduct({{id}})">DELETE</button></td>
     </tr>
     {{/each}}
 </table>
+
+<script>
+    function deleteProduct(id) {
+        axios.delete(`http://localhost:3001/products/${id}`).then(resp => {
+            location.reload();
+        });
+    }
+</script>
 
 
 {{!-- <a href="http://localhost:3000/products/{{id}}"></a>

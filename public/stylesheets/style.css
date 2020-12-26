@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+.homeContainer {
+  background-color: darkgray;
+  padding: 0.01em 30px;
+  text-align: left;
+}

@@ -19,6 +19,26 @@ router.get('/new', function(req, res, next) {
   });
 });
 
+router.post('/create', function(req, res, next) {
+  const { newNameProduct, newCategoryId, newPriceProduct } = req.body;
+  console.log(newNameProduct);
+  console.log(newCategoryId);
+  console.log(newPriceProduct);
+  axios.post(`http://localhost:3001/products`, {
+    name: newNameProduct,
+    details: 'asdf',
+    category_id: newCategoryId,
+    stock: 123,
+    stock_min: 50,
+    stock_max: 1000,
+    price: newPriceProduct,
+  }).then((resp) => {
+    res.redirect('/products');
+  }).catch((err) => {
+    console.log(err);
+  });
+});
+
 router.post('/update', function(req, res, next) {
   const { productId, nameProduct, categoryId, priceProduct } = req.body;
   console.log(productId);
@@ -29,7 +49,7 @@ router.post('/update', function(req, res, next) {
     name: nameProduct,
     details: 'asdf',
     category_id: categoryId,
-    price: 100,
+    price: priceProduct,
   }).then((resp) => {
     res.redirect('/products');
   }).catch((err) => {
@@ -60,12 +80,5 @@ router.get('/:id', function(req, res, next) {
 hbs.registerHelper('isSelectedCategory', function (category, selectedCategory) {
   return category.id === selectedCategory.id;
 });
-
-// router.post('/', function(req, res, next) {
-//   axios.get('http://localhost:3001/categories').then(resp => {
-//     res.render('create-product', { categories: resp.data.data })
-//     console.log(resp);
-//   });
-// });
 
 module.exports = router;

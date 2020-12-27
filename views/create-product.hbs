@@ -1,12 +1,12 @@
 <link rel='stylesheet' href="/stylesheets/new-product.css" />
 <h1>Create a new product</h1>
-<form id="newProduct">
+<form id="newProduct" method="POST" action="/products/create">
     <label for="newNameProduct">Name:</label><br>
     <input type="text" id="newNameP" name="newNameProduct" value=""><br><br>
-    <label for="newCategoryName">Category_Name:</label><br>
-    <select name="newCategoryName" id="newCatName">
+    <label for="newCategoryId">Category_Name:</label><br>
+    <select name="newCategoryId" id="newCatName">
         {{#each categories}}
-        <option value="{{name}}">{{name}}</option>
+        <option value="{{id}}">{{name}}</option>
         {{/each}}
     </select>
     <br><br>

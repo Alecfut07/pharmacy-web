@@ -1,18 +1,28 @@
 <link rel='stylesheet' href="/stylesheets/product-details.css" />
 <h1>Product Details</h1>
-
-
-{{!-- <table>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Category_Name</th>
-        <th>Price</th>
-    </tr>
-    <tr>
-        <td class="id">{{product.id}}</td>
-        <td class="name">{{product.name}}</td>
-        <td class="categoryName">{{product.category.name}}</td>
-        <td class="price">{{product.price}}</td>
-    </tr>
-</table> --}}
+<form id="productDetails">
+    <p>ID: {{product.id}}</p>
+    <label for="nameProduct">Name:</label><br>
+    <input type="text" id="nameP" name="nameProduct" value="{{product.name}}"><br><br>
+    <label for="categoryName">Category_Name:</label><br>
+    <select name="categoryName" id="catN">
+        {{#each categories}}
+        {{#if (isSelectedCategory this ../product.category)}}
+        <option selected="selected" value="{{name}}">{{name}}</option>
+        {{else}}
+        <option value="{{name}}">{{name}}</option>
+        {{/if}}
+        {{/each}}
+    </select>
+    <br><br>
+    <label for="priceProduct">Price:</label><br>
+    <input type="text" id="priceP" name="priceProduct" value="{{product.price}}"><br><br>
+    <button class="saveButton" onclick="updateProduct({{id}})">SAVE</button>
+</form>
+<script>
+    function updateProduct(id) {
+        axios.put(`http://localhost:3001/products/${id}`).then(resp => {
+            location.reload();
+        });
+    }
+</script>

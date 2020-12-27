@@ -33,3 +33,7 @@ tr:nth-child(even) {
     text-align: center;
     width: 4%;
 }
+
+#nameP {
+    width: 30%;
+}

@@ -5,7 +5,15 @@ var router = express.Router();
 /* GET users listing. */
 const axios = require('axios');
 
-router.get('/', function(req, res, next) {
+const sessionChecker = (req, res, next) => {
+  if (req.session.user && req.cookies["connect.sid"]) {
+    next();
+  } else {
+    res.redirect('/auth/login');
+  }
+};
+
+router.get('/', sessionChecker, function(req, res, next) {
   axios.get('http://localhost:3001/products').then(resp => {
     res.render('products', { products: resp.data.data })
     // console.log(resp);
@@ -57,7 +65,7 @@ router.post('/update', function(req, res, next) {
   });
 });
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', sessionChecker, function(req, res, next) {
   const id = parseInt(req.params.id, 10);
   axios.all([
     axios.get(`http://localhost:3001/products/${id}`), 
@@ -72,7 +80,9 @@ router.get('/:id', function(req, res, next) {
     })
     // console.log('Product:', productResp);
     // console.log('Categories:', categoriesResp);
-  })).catch((err) => {
+  }))
+  .catch((err) => {
+    console.log("aquí")
     console.log(err);
   });
 });

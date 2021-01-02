@@ -1,5 +1,6 @@
 <link rel='stylesheet' href="/stylesheets/product-details.css" />
 <h1>Product Details</h1>
+<a href="http://localhost:3000/auth/logout"><button>Log out</button></a>
 <form id="productDetails" method="POST" action="/products/update">
     <p>ID: {{product.id}}</p>
     <input type="hidden" id="productId" name="productId" value="{{product.id}}">

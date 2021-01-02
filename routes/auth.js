@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
+    res.locals.myMessage = req.flash('errorkey');
     res.render('login')
 });
 
@@ -30,7 +31,16 @@ router.post('/login', function(req, res, next) {
     res.redirect('/products');
   }).catch((err) => {
     console.log(err);
+    req.flash('errorkey', 'Something went wrong');
+    res.redirect('/auth/login');
   });
+})
+
+router.get('/logout', function (req, res, next) {
+  res.clearCookie('connect.sid');
+  // req.session = null;
+  req.session.destroy();
+  res.redirect('/auth/login');
 })
 
 module.exports = router;

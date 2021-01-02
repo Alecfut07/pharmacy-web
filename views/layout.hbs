@@ -5,9 +5,23 @@
   <title>{{title}}</title>
   <link rel='stylesheet' href='/stylesheets/normalize.css' />
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 
 <body>
+  <div class="login-controls">
+    {{#if username}}
+    <ul>
+      <li><a href="/profile">{{username}}</a></li>
+      <li><a href="/auth/logout">Sign Out</a></li>
+    </ul>
+    {{else}}
+    <ul>
+      <li><a href="/auth/login">Login</a></li>
+    </ul>
+    {{/if}}
+  </div>
   {{{body}}}
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>

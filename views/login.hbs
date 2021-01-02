@@ -6,3 +6,6 @@
     <input type="text" id="pass" name="password" value=""><br><br>
     <button class="loginButton">Login</button>
 </form>
+{{#if myMessage}}
+<p class="alert alert-danger">{{myMessage}}</p>
+{{/if}}

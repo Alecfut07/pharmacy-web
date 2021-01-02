@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var logger = require('morgan');
+var flash = require('connect-flash')
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
@@ -27,6 +28,19 @@ app.use(session({
   cookie: {
     maxAge: 50000
   }}));
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  app.locals.successMessage = req.flash('success');
+  next();
+});
+
+app.use((req, res, next) => {
+  const user =  req.session.user || {};
+  res.locals.username = user.username;
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);

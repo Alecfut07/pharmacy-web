@@ -31,4 +31,9 @@ router.get('/tacos', function(req, res, next) {
   });
 });
 
+router.get('/flash', function(req, res, next) {
+  res.render('flash');
+  req.flash('success', 'You have signed up successfully');
+});
+
 module.exports = router;
